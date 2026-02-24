@@ -1,14 +1,15 @@
 const { DataTypes } = require('sequelize');
-module.exports = (sequelize) => sequelize.define('Order', {
-  id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true },
-  orderCode: { type: DataTypes.STRING, unique: true },
-  userId: { type: DataTypes.UUID },
-  email: { type: DataTypes.STRING },
-  totalAmount: { type: DataTypes.DECIMAL(15,2) },
-  finalAmount: { type: DataTypes.DECIMAL(15,2) },
-  paymentMethod: { type: DataTypes.ENUM('vnpay','momo','wallet'), defaultValue: 'vnpay' },
-  paymentStatus: { type: DataTypes.ENUM('pending','paid','failed'), defaultValue: 'pending' },
-  status: { type: DataTypes.ENUM('pending','processing','completed','cancelled'), defaultValue: 'pending' },
-  couponCode: { type: DataTypes.STRING },
-  affiliateCode: { type: DataTypes.STRING },
-}, { tableName: 'orders', timestamps: true });
+const { sequelize } = require('./index');
+const sequelize = require('./db');
+
+const Order = sequelize.define('Order', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  userId: { type: DataTypes.INTEGER },
+  totalAmount: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
+  status: { type: DataTypes.ENUM('pending','paid','processing','completed','cancelled'), defaultValue: 'pending' },
+  paymentMethod: { type: DataTypes.STRING },
+  paymentStatus: { type: DataTypes.STRING, defaultValue: 'unpaid' },
+  notes: { type: DataTypes.TEXT },
+}, { timestamps: true });
+
+module.exports = Order;

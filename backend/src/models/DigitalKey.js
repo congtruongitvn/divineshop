@@ -1,8 +1,13 @@
 const { DataTypes } = require('sequelize');
-module.exports = (sequelize) => sequelize.define('DigitalKey', {
-  id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true },
-  productId: { type: DataTypes.UUID },
+const { sequelize } = require('./index');
+const sequelize = require('./db');
+
+const DigitalKey = sequelize.define('DigitalKey', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  productId: { type: DataTypes.INTEGER },
   keyValue: { type: DataTypes.TEXT, allowNull: false },
   isUsed: { type: DataTypes.BOOLEAN, defaultValue: false },
-  orderId: { type: DataTypes.UUID },
-}, { tableName: 'digital_keys', timestamps: true });
+  orderId: { type: DataTypes.INTEGER },
+}, { timestamps: true });
+
+module.exports = DigitalKey;

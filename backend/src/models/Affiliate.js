@@ -1,9 +1,14 @@
 const { DataTypes } = require('sequelize');
-module.exports = (sequelize) => sequelize.define('Affiliate', {
-  id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true },
-  userId: { type: DataTypes.UUID },
+const { sequelize } = require('./index');
+const sequelize = require('./db');
+
+const Affiliate = sequelize.define('Affiliate', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  userId: { type: DataTypes.INTEGER },
   code: { type: DataTypes.STRING, unique: true },
-  totalEarnings: { type: DataTypes.DECIMAL(15,2), defaultValue: 0 },
-  totalOrders: { type: DataTypes.INTEGER, defaultValue: 0 },
-  commissionRate: { type: DataTypes.DECIMAL(5,2), defaultValue: 5 },
-}, { tableName: 'affiliates', timestamps: true });
+  commission: { type: DataTypes.DECIMAL(5, 2), defaultValue: 10 },
+  totalEarned: { type: DataTypes.DECIMAL(10, 2), defaultValue: 0 },
+  isActive: { type: DataTypes.BOOLEAN, defaultValue: true },
+}, { timestamps: true });
+
+module.exports = Affiliate;
