@@ -1,18 +1,6 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = require('./db');
+const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME || 'postgres',
-  process.env.DB_USER || 'postgres',
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST || 'localhost',
-    port: parseInt(process.env.DB_PORT) || 5432,
-    dialect: 'postgres',
-    logging: false,
-  }
-);
-
-// Import models — không gọi như function
 const User = require('./User');
 const Category = require('./Category');
 const Product = require('./Product');
@@ -21,7 +9,6 @@ const OrderItem = require('./OrderItem');
 const DigitalKey = require('./DigitalKey');
 const Affiliate = require('./Affiliate');
 const Coupon = require('./Coupon');
-const sequelize = require('./db');
 
 // Associations
 User.hasMany(Order, { foreignKey: 'userId' });
