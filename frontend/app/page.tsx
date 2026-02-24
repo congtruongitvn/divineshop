@@ -1,12 +1,16 @@
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#0f0f1a] text-white flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-5xl font-black mb-4">
-          Divine<span className="text-violet-400">Shop</span>
+    <main style={{ minHeight: '100vh', background: '#0f0f1a', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
+        <h1 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '1rem' }}>
+          Divine<span style={{ color: '#7c3aed' }}>Shop</span>
         </h1>
-        <p className="text-white/50 text-xl mb-8">Phần mềm bản quyền giá tốt nhất</p>
-        <a href="/products" className="bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2.5 px-6 rounded-xl transition-all">Mua ngay</a>
+        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1.2rem', marginBottom: '2rem' }}>
+          Phần mềm bản quyền giá tốt nhất
+        </p>
+        <a href="/products" style={{ background: '#7c3aed', color: '#fff', padding: '12px 32px', borderRadius: '12px', textDecoration: 'none', fontWeight: 600 }}>
+          Mua ngay
+        </a>
       </div>
     </main>
   );
