@@ -1,0 +1,8 @@
+const router = require('express').Router();
+const { getProfile, updateProfile } = require('../controllers/userController');
+const { authenticate } = require('../middleware/auth');
+
+router.get('/profile', authenticate, getProfile);
+router.put('/profile', authenticate, updateProfile);
+
+module.exports = router;
